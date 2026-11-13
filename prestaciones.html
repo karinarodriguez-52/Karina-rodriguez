@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+     SITE DU MAESTRO - Page : Servicios y precios | Maestro TU NOMBRE
+     Les commentaires en français expliquent chaque partie.
+     Fichiers du site : index.html, prestaciones.html, contacto.html
+     ========================================================== -->
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Servicios y precios | Maestra KARINA RODRIGUEZ </title>
+<meta name="description" content="Videncia, amor, protección y limpia espiritual con tres niveles de potencia. Desde $500 MXN.">
+<!-- Petite icône de l'onglet du navigateur (boule de cristal) et infos de partage -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+<meta property="og:locale" content="es_MX">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0612">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+<script src="config.js"></script>
+
+<script>
+/* ===== RESTRICTION AUX PAYS AUTORISÉS =====
+   Le site vérifie le fuseau horaire de l'appareil du visiteur.
+   Si ce fuseau n'est pas dans la liste, la page affiche seulement
+   un message de blocage.
+   - RESTRINGIR = false : le site s'ouvre pour tout le monde
+   - INCLUIR_USA = true : ajoute aussi les États-Unis */
+var RESTRINGIR = false;
+var INCLUIR_USA = false;
+
+/* Liste des fuseaux autorisés. Un élément qui finit par "/" couvre tous
+   les fuseaux de ce groupe (ex. : toutes les provinces d'Argentine). */
+var ZONAS = [
+  // Mexique
+  "America/Mexico_City","America/Cancun","America/Merida","America/Monterrey","America/Matamoros",
+  "America/Chihuahua","America/Ciudad_Juarez","America/Ojinaga","America/Mazatlan",
+  "America/Hermosillo","America/Bahia_Banderas","America/Tijuana",
+  // Espagne (péninsule, Ceuta, Canaries)
+  "Europe/Madrid","Africa/Ceuta","Atlantic/Canary",
+  // Pérou et Équateur (Galápagos inclus)
+  "America/Lima","America/Guayaquil","Pacific/Galapagos",
+  // Amérique centrale
+  "America/Guatemala","America/El_Salvador","America/Tegucigalpa","America/Managua",
+  "America/Costa_Rica","America/Panama",
+  // Caraïbes hispanophones
+  "America/Havana","America/Santo_Domingo","America/Puerto_Rico",
+  // Amérique du Sud hispanophone
+  "America/Bogota","America/Caracas","America/La_Paz","America/Santiago","America/Punta_Arenas",
+  "Pacific/Easter","America/Asuncion","America/Montevideo",
+  // Argentine (tous les fuseaux et anciens noms)
+  "America/Argentina/","America/Buenos_Aires","America/Cordoba","America/Mendoza",
+  "America/Jujuy","America/Catamarca"
+];
+
+/* Fuseaux des États-Unis : utilisés seulement si INCLUIR_USA = true */
+var ZONAS_USA = [
+  "America/New_York","America/Chicago","America/Denver","America/Los_Angeles","America/Phoenix",
+  "America/Anchorage","America/Detroit","America/Boise","America/Juneau","America/Adak",
+  "America/Nome","America/Sitka","America/Yakutat","America/Metlakatla","America/Menominee",
+  "America/Indiana/","America/Kentucky/","America/North_Dakota/","Pacific/Honolulu"
+];
+
+/* Fonction : le fuseau du visiteur est-il autorisé ? */
+function zonaPermitida(z){
+  var lista = INCLUIR_USA ? ZONAS.concat(ZONAS_USA) : ZONAS;
+  for(var i = 0; i < lista.length; i++){
+    if(z.indexOf(lista[i]) === 0){ return true; }
+  }
+  return false;
+}
+
+try{
+  var zona = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  // Si le fuseau est inconnu (zona vide), on ne bloque pas par erreur
+  if(RESTRINGIR && zona && !zonaPermitida(zona)){
+    document.documentElement.className = "bloqueado";
+  }
+}catch(e){}
+</script>
+
+<style>
+/* ============ 1. COULEURS (modifiables ici, utilisées partout) ============ */
+:root{--card:#150f24;--v:#7c3aed;--g:#d4af37;--t:#ece6f7}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+
+/* ============ 2. FOND ET TEXTE DE LA PAGE ============ */
+body{background:radial-gradient(ellipse at 50% -10%,#2a1052 0,#0a0612 62%) fixed;color:var(--t);font:18px/1.7 Georgia,'Times New Roman',serif;min-height:100vh}
+
+/* ============ 3. BLOCAGE HORS DES PAYS AUTORISÉS (activé par le script de l'en-tête) ============ */
+.bloqueado body>*{display:none!important}
+.bloqueado body::before{content:"Este sitio no está disponible en tu país.";display:block;text-align:center;padding:40vh 20px;color:#d4af37;font-size:1.4rem}
+
+/* ============ 4. MENU DU HAUT ============ */
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:18px 5%;border-bottom:1px solid #d4af3733}
+.logo{font-family:'Cinzel',Georgia,serif;color:var(--g);font-size:1.35rem;letter-spacing:2px;text-decoration:none}
+nav div a{color:var(--t);text-decoration:none;margin-left:12px;padding:8px 18px;border:1px solid #d4af3799;border-radius:30px;display:inline-block}
+nav div a:hover,nav div a:focus-visible{color:var(--g);border-color:var(--g);background:#2a1052;outline:none}
+nav div a.on{color:#1a1033;background:var(--g);border-color:var(--g)}
+/* ============ 5. TITRES ============ */
+h1,h2,h3{font-family:'Cinzel',Georgia,serif;color:var(--g);font-weight:600;line-height:1.25}
+h2{font-size:1.9rem;margin-bottom:14px}
+
+/* ============ 6. BOUTONS ============ */
+.btn{display:inline-block;background:linear-gradient(135deg,#e6c75a,#b8892b);color:#1a1033;padding:14px 30px;border-radius:30px;text-decoration:none;font:bold 1rem Georgia,serif;margin:22px 14px 0 0;border:0;cursor:pointer}
+.btn:hover,.btn:focus-visible{box-shadow:0 0 22px #d4af37aa;outline:none}
+.btn.sec{background:transparent;color:var(--g);border:1px solid var(--g)}
+
+/* ============ 7. SECTIONS ET CARTES ============ */
+section{padding:54px 5%;max-width:1100px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid #d4af3744;border-radius:6px;padding:24px}
+.card h3{font-size:1.15rem;margin-bottom:8px}
+.sub{opacity:.8;font-size:.95rem}
+
+/* ============ 8. ACCUEIL : texte à gauche, photo à droite ============ */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;max-width:1100px;margin:auto;padding:70px 5%}
+.hero h1{font-size:clamp(2.1rem,5.5vw,3.5rem);text-shadow:0 0 30px #7c3aed88}
+.titulo{color:#c9b6f5;font-size:1.25rem;margin:6px 0 18px}
+.foto{position:relative;aspect-ratio:3/4;border-radius:200px 200px 8px 8px;border:2px solid var(--g);overflow:hidden;background:linear-gradient(160deg,#2a1052,#150f24);box-shadow:0 0 60px #7c3aed88}
+.foto span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.6;text-align:center;padding:20px}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.foto{order:-1;max-width:320px;margin:auto}}
+
+/* ============ 9. PRESTATIONS : liste cliquable ============ */
+.svc-btn{text-align:left;color:var(--t);font:inherit;cursor:pointer;display:block;width:100%}
+.svc-btn img{width:100%;height:120px;object-fit:cover;border-radius:4px;margin-bottom:10px;background:#2a1052}
+.svc-btn.activo{border-color:var(--g);background:#1d1233}
+.desde{color:var(--g);font-weight:bold}
+
+/* ============ 10. PRESTATIONS : fiche détaillée ============ */
+.detalle{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px;scroll-margin-top:20px}
+.detalle img.principal{width:100%;max-height:260px;object-fit:cover;border-radius:6px;background:#2a1052}
+.detalle video{width:100%;border-radius:6px;margin-top:14px;background:#000}
+.niveles{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 16px}
+.nivel{flex:1;min-width:100px;background:#0f0919;color:var(--t);border:1px solid #d4af3766;border-radius:6px;padding:10px;font:inherit;cursor:pointer}
+.nivel.on{border-color:var(--g);background:#2a1052}
+.precio-grande{color:var(--g);font-size:2rem;font-weight:bold;font-family:'Cinzel',Georgia,serif}
+@media(max-width:760px){.detalle{grid-template-columns:1fr}}
+
+/* ============ 11. FORMULAIRE DE CONTACT ============ */
+label{display:block;margin:14px 0 4px}
+input,select,textarea{width:100%;padding:12px;background:#0f0919;color:var(--t);border:1px solid #d4af3766;border-radius:6px;font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--g)}
+
+/* ============ 13. NOUVEAUX BLOCS : étapes, témoignages, FAQ, avis légal ============ */
+/* Étapes numérotées « Comment ça marche » (vraie séquence, donc numérotée) */
+.pasos{counter-reset:p;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;list-style:none;padding:0}
+.pasos li{counter-increment:p;background:var(--card);border:1px solid #d4af3744;border-radius:6px;padding:24px}
+.pasos li::before{content:counter(p);display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--g);color:#1a1033;font-weight:bold;margin-bottom:10px}
+.pasos b{color:var(--g);display:block;margin-bottom:4px}
+/* Témoignages */
+.testi{font-style:italic}
+.testi cite{display:block;margin-top:12px;color:var(--g);font-style:normal;font-size:.95rem}
+/* Questions fréquentes (déroulantes, sans JavaScript) */
+details{background:var(--card);border:1px solid #d4af3744;border-radius:6px;padding:16px 20px;margin-bottom:12px}
+summary{cursor:pointer;color:var(--g);font-weight:bold}
+details p{margin-top:10px}
+/* Encadré légal (aviso de privacidad) et réseaux sociaux */
+.aviso{background:var(--card);border-left:3px solid var(--g);padding:16px 22px;font-size:.95rem;border-radius:4px;max-width:75ch}
+.aviso p{margin-bottom:10px}
+.redes a{color:var(--g);margin-right:18px}
+footer p{margin:6px 0}
+
+/* ============ 12. BAS DE PAGE ET BOUTON WHATSAPP FLOTTANT ============ */
+footer{text-align:center;padding:30px 5%;border-top:1px solid #d4af3733;font-size:.9rem;opacity:.8}
+.wa{position:fixed;right:16px;bottom:16px;background:#25d366;color:#fff;padding:13px 20px;border-radius:30px;text-decoration:none;font:bold 1rem sans-serif;box-shadow:0 4px 16px #000a;z-index:9}
+@media(max-width:600px){nav div a{margin:6px 8px 0 0;padding:7px 14px;font-size:.95rem}}
+</style>
+</head>
+<body>
+
+<!-- ===== MENU DE NAVIGATION (identique sur les 3 pages) ===== -->
+<nav>
+  <a class="logo" href="index.html">Maestra KARINA RODRIGUEZ </a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="prestaciones.html" class="on">Servicios y precios</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+</nav>
+
+<section>
+  <h1 style="font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:12px">Servicios y precios</h1>
+  <p style="max-width:65ch;margin-bottom:30px">Toca el servicio que te interesa para ver su descripción, un video, la potencia disponible y el precio. La consulta más económica empieza en $500 MXN.</p>
+
+  <!-- Liste des services : remplie automatiquement par le script plus bas -->
+  <div class="grid" id="lista"></div>
+  <noscript><p>Activa JavaScript para ver los precios o escríbeme por WhatsApp.</p></noscript>
+
+  <!-- Fiche détaillée du service choisi : remplie par le script -->
+  <article class="card detalle" id="detalle">
+    <div id="media"></div>
+    <div id="info"></div>
+  </article>
+</section>
+
+<!-- ===== MOYENS DE PAIEMENT (à adapter à vos moyens réels) ===== -->
+<section>
+  <h2>Formas de pago</h2>
+  <div class="grid">
+    <div class="card"><h3>Transferencia SPEI</h3><p>Desde tu app bancaria, a cualquier hora. Te envío los datos por WhatsApp.</p></div>
+    <div class="card"><h3>Depósito en OXXO</h3><p>Disponible en todo el país. Te indico la cuenta o tarjeta para el depósito.</p></div>
+    <div class="card"><h3>Otros medios</h3><p>Si prefieres otra forma de pago, consúltame por WhatsApp.</p></div>
+  </div>
+  <p class="sub" style="margin-top:14px">Los precios están en pesos mexicanos (MXN). Confirma siempre el monto final por WhatsApp antes de pagar.</p>
+</section>
+
+<!-- ===== QUESTIONS FRÉQUENTES (cliquer pour ouvrir ; modifier les textes à volonté) ===== -->
+<section>
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Cómo es una consulta?</summary><p>Se hace por WhatsApp, con mensajes o notas de voz, o por videollamada si el servicio lo permite. Me cuentas tu situación y yo te oriento.</p></details>
+  <details><summary>¿Qué diferencia hay entre Simple, Potente y Suprema?</summary><p>La potencia indica la profundidad del trabajo y la duración del seguimiento. En Simple resuelvo un tema puntual; en Suprema el trabajo es más completo y te acompaño durante más días.</p></details>
+  <details><summary>¿Mi información es confidencial?</summary><p>Sí. No comparto tu nombre, tu número ni tu historia con nadie. Puedes leer el aviso de privacidad en la página de contacto.</p></details>
+  <details><summary>¿Garantizan resultados?</summary><p>No. Cada situación es distinta y no puedo prometer resultados. Ofrezco orientación y acompañamiento espiritual con total honestidad.</p></details>
+  <details><summary>¿Cuándo y cómo se paga?</summary><p>El pago se hace antes de iniciar el servicio, por transferencia SPEI, depósito en OXXO u otro medio acordado. El precio final se confirma siempre por WhatsApp.</p></details>
+  <details><summary>¿Atienden fuera de la Ciudad de México?</summary><p>Sí, atiendo a distancia en todo México.</p></details>
+  <details><summary>¿Hay edad mínima?</summary><p>Sí, el servicio es solo para mayores de 18 años.</p></details>
+  <details><summary>¿Y si tengo un problema grave de salud, legal o económico?</summary><p>Mi trabajo es un complemento espiritual. Para temas médicos, legales o financieros, acude también a un profesional.</p></details>
+</section>
+
+<script>
+/* =========================================================
+   DONNÉES DES SERVICES - C'EST ICI QUE VOUS MODIFIEZ TOUT
+   Pour chaque service :
+   - nombre      : nom affiché
+   - imagen      : chemin de l'image (dossier "imagenes")
+   - video       : chemin de la vidéo (dossier "videos"). Laisser "" pour ne pas en afficher
+   - descripcion : texte de description
+   - niveles     : les 3 puissances avec leur prix en pesos et leur détail
+   ========================================================= */
+const NUMERO = CONFIG.whatsapp;   // vient du fichier config.js  // numéro WhatsApp : 52 + 10 chiffres
+const SERVICIOS = [
+  { nombre: "Videncia y consulta espiritual", imagen: "imagenes/videncia.jpg", video: "videos/videncia.mp4",
+    descripcion: "Lectura de tu situación actual para entender lo que pasa y qué camino tomar.",
+    niveles: [
+      { nombre: "Simple",  precio: 500,  detalle: "Una pregunta concreta con respuesta clara." },
+      { nombre: "Potente", precio: 1200, detalle: "Lectura completa: amor, trabajo y familia." },
+      { nombre: "Suprema", precio: 2500, detalle: "Videncia profunda con consejos y seguimiento." } ] },
+  { nombre: "Recuperar el amor", imagen: "imagenes/amor.jpg", video: "videos/amor.mp4",
+    descripcion: "Trabajo espiritual para acercar a la persona amada y recuperar el entendimiento.",
+    niveles: [
+      { nombre: "Simple",  precio: 1500, detalle: "Ritual ligero de acercamiento." },
+      { nombre: "Potente", precio: 3500, detalle: "Ritual reforzado con seguimiento de 7 días." },
+      { nombre: "Suprema", precio: 7000, detalle: "Trabajo completo con seguimiento de 21 días." } ] },
+  { nombre: "Protección, suerte y éxito", imagen: "imagenes/proteccion.jpg", video: "videos/proteccion.mp4",
+    descripcion: "Para abrir tus caminos en el dinero y el trabajo, y protegerte de malas influencias.",
+    niveles: [
+      { nombre: "Simple",  precio: 1000, detalle: "Baño y oraciones de protección." },
+      { nombre: "Potente", precio: 2500, detalle: "Protección personal y suerte en el trabajo." },
+      { nombre: "Suprema", precio: 5500, detalle: "Protección de la familia, el hogar y el negocio." } ] },
+  { nombre: "Limpia y desbloqueo espiritual", imagen: "imagenes/limpia.jpg", video: "videos/limpia.mp4",
+    descripcion: "Limpieza de bloqueos y energías negativas que frenan tu vida.",
+    niveles: [
+      { nombre: "Simple",  precio: 1500, detalle: "Limpia de la persona." },
+      { nombre: "Potente", precio: 4000, detalle: "Limpia de la persona y del hogar." },
+      { nombre: "Suprema", precio: 8000, detalle: "Desbloqueo profundo con seguimiento de 21 días." } ] }
+];
+
+/* ---------- Outils ---------- */
+const $ = id => document.getElementById(id);
+// Affiche un prix en pesos mexicains, ex: $1,200 MXN
+const pesos = n => "$" + n.toLocaleString("es-MX") + " MXN";
+let actual = SERVICIOS[0];   // service actuellement ouvert
+let nivel = 0;               // puissance choisie (0 = Simple)
+
+/* ---------- Liste des services (cartes cliquables) ---------- */
+function pintarLista(){
+  $("lista").innerHTML = SERVICIOS.map((s, i) =>
+    '<button class="card svc-btn' + (s === actual ? ' activo' : '') + '" data-i="' + i + '">' +
+    '<img src="' + s.imagen + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+    '<h3>' + s.nombre + '</h3>' +
+    '<p class="desde">Desde ' + pesos(s.niveles[0].precio) + '</p></button>').join("");
+}
+
+/* ---------- Colonne image + vidéo du service ---------- */
+function pintarMedia(){
+  $("media").innerHTML =
+    '<img class="principal" src="' + actual.imagen + '" alt="' + actual.nombre + '" onerror="this.style.display=\'none\'">' +
+    (actual.video ? '<video controls preload="metadata" src="' + actual.video + '"></video>' : '');
+  // Si la vidéo est introuvable, on la cache
+  const v = $("media").querySelector("video");
+  if(v){ v.onerror = () => { v.style.display = "none"; }; }
+}
+
+/* ---------- Colonne texte : description, puissance, prix, bouton ---------- */
+function pintarInfo(){
+  const n = actual.niveles[nivel];
+  const botones = actual.niveles.map((x, i) =>
+    '<button class="nivel' + (i === nivel ? ' on' : '') + '" data-n="' + i + '">' + x.nombre + '<br><small>' + pesos(x.precio) + '</small></button>').join("");
+  const mensaje = "Hola Maestra, quiero el servicio: " + actual.nombre + " (nivel " + n.nombre + ", " + pesos(n.precio) + ").";
+  $("info").innerHTML =
+    '<h2>' + actual.nombre + '</h2><p>' + actual.descripcion + '</p>' +
+    '<h3>Elige la potencia</h3><div class="niveles">' + botones + '</div>' +
+    '<p class="sub">' + n.detalle + '</p>' +
+    '<p class="sub">Incluye atención personal y total confidencialidad. Respuesta normalmente en menos de 24 horas.</p>' +
+    '<p class="precio-grande">' + pesos(n.precio) + '</p>' +
+    '<a class="btn" href="https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(mensaje) + '" target="_blank" rel="noopener">Reservar por WhatsApp</a>';
+}
+
+/* ---------- Clic sur un service : on l'ouvre ---------- */
+$("lista").onclick = e => {
+  const b = e.target.closest("button"); if(!b) return;
+  actual = SERVICIOS[b.dataset.i]; nivel = 0;
+  pintarLista(); pintarMedia(); pintarInfo();
+  $("detalle").scrollIntoView({ behavior: "smooth", block: "start" });
+};
+/* ---------- Clic sur une puissance : on change le prix ---------- */
+$("info").onclick = e => {
+  const b = e.target.closest(".nivel"); if(!b) return;
+  nivel = Number(b.dataset.n); pintarInfo();
+};
+
+/* ---------- Affichage au chargement de la page ---------- */
+pintarLista(); pintarMedia(); pintarInfo();
+</script>
+
+<!-- ===== BOUTON WHATSAPP FLOTTANT (toujours visible) ===== -->
+<a class="wa" href="#" data-wa="Hola Maestra, quiero una consulta." target="_blank" rel="noopener">WhatsApp</a>
+
+<!-- ===== BAS DE PAGE ===== -->
+<footer>
+  <p>© Maestra KARINA RODRIGUEZ. Servicio disponible solo en México. Solo para mayores de 18 años.</p>
+  <!-- Avertissement important : protège le Maître et informe honnêtement les clients -->
+  <p class="sub">Los servicios espirituales y de videncia son de carácter orientativo y no garantizan resultados. No sustituyen la opinión de un médico, abogado o asesor financiero.</p>
+  <p><a href="contacto.html#privacidad" style="color:#d4af37">Aviso de privacidad</a></p>
+</footer>
+</body>
+</html>

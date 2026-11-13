@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+     SITE DU MAESTRO - Page : Contacto | Maestro TU NOMBRE
+     Les commentaires en français expliquent chaque partie.
+     Fichiers du site : index.html, prestaciones.html, contacto.html
+     ========================================================== -->
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contacto | Maestra KARINA RODRIGUEZ </title>
+<meta name="description" content="Contacta al Maestra por WhatsApp.">
+<!-- Petite icône de l'onglet du navigateur (boule de cristal) et infos de partage -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+<meta property="og:locale" content="es_MX">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0612">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+<script src="config.js"></script>
+
+<script>
+/* ===== RESTRICTION AUX PAYS AUTORISÉS =====
+   Le site vérifie le fuseau horaire de l'appareil du visiteur.
+   Si ce fuseau n'est pas dans la liste, la page affiche seulement
+   un message de blocage.
+   - RESTRINGIR = false : le site s'ouvre pour tout le monde
+   - INCLUIR_USA = true : ajoute aussi les États-Unis */
+var RESTRINGIR = false;
+var INCLUIR_USA = false;
+
+/* Liste des fuseaux autorisés. Un élément qui finit par "/" couvre tous
+   les fuseaux de ce groupe (ex. : toutes les provinces d'Argentine). */
+var ZONAS = [
+  // Mexique
+  "America/Mexico_City","America/Cancun","America/Merida","America/Monterrey","America/Matamoros",
+  "America/Chihuahua","America/Ciudad_Juarez","America/Ojinaga","America/Mazatlan",
+  "America/Hermosillo","America/Bahia_Banderas","America/Tijuana",
+  // Espagne (péninsule, Ceuta, Canaries)
+  "Europe/Madrid","Africa/Ceuta","Atlantic/Canary",
+  // Pérou et Équateur (Galápagos inclus)
+  "America/Lima","America/Guayaquil","Pacific/Galapagos",
+  // Amérique centrale
+  "America/Guatemala","America/El_Salvador","America/Tegucigalpa","America/Managua",
+  "America/Costa_Rica","America/Panama",
+  // Caraïbes hispanophones
+  "America/Havana","America/Santo_Domingo","America/Puerto_Rico",
+  // Amérique du Sud hispanophone
+  "America/Bogota","America/Caracas","America/La_Paz","America/Santiago","America/Punta_Arenas",
+  "Pacific/Easter","America/Asuncion","America/Montevideo",
+  // Argentine (tous les fuseaux et anciens noms)
+  "America/Argentina/","America/Buenos_Aires","America/Cordoba","America/Mendoza",
+  "America/Jujuy","America/Catamarca"
+];
+
+/* Fuseaux des États-Unis : utilisés seulement si INCLUIR_USA = true */
+var ZONAS_USA = [
+  "America/New_York","America/Chicago","America/Denver","America/Los_Angeles","America/Phoenix",
+  "America/Anchorage","America/Detroit","America/Boise","America/Juneau","America/Adak",
+  "America/Nome","America/Sitka","America/Yakutat","America/Metlakatla","America/Menominee",
+  "America/Indiana/","America/Kentucky/","America/North_Dakota/","Pacific/Honolulu"
+];
+
+/* Fonction : le fuseau du visiteur est-il autorisé ? */
+function zonaPermitida(z){
+  var lista = INCLUIR_USA ? ZONAS.concat(ZONAS_USA) : ZONAS;
+  for(var i = 0; i < lista.length; i++){
+    if(z.indexOf(lista[i]) === 0){ return true; }
+  }
+  return false;
+}
+
+try{
+  var zona = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  // Si le fuseau est inconnu (zona vide), on ne bloque pas par erreur
+  if(RESTRINGIR && zona && !zonaPermitida(zona)){
+    document.documentElement.className = "bloqueado";
+  }
+}catch(e){}
+</script>
+
+<style>
+/* ============ 1. COULEURS (modifiables ici, utilisées partout) ============ */
+:root{--card:#150f24;--v:#7c3aed;--g:#d4af37;--t:#ece6f7}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+
+/* ============ 2. FOND ET TEXTE DE LA PAGE ============ */
+body{background:radial-gradient(ellipse at 50% -10%,#2a1052 0,#0a0612 62%) fixed;color:var(--t);font:18px/1.7 Georgia,'Times New Roman',serif;min-height:100vh}
+
+/* ============ 3. BLOCAGE HORS DES PAYS AUTORISÉS (activé par le script de l'en-tête) ============ */
+.bloqueado body>*{display:none!important}
+.bloqueado body::before{content:"Este sitio no está disponible en tu país.";display:block;text-align:center;padding:40vh 20px;color:#d4af37;font-size:1.4rem}
+
+/* ============ 4. MENU DU HAUT ============ */
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:18px 5%;border-bottom:1px solid #d4af3733}
+.logo{font-family:'Cinzel',Georgia,serif;color:var(--g);font-size:1.35rem;letter-spacing:2px;text-decoration:none}
+nav div a{color:var(--t);text-decoration:none;margin-left:12px;padding:8px 18px;border:1px solid #d4af3799;border-radius:30px;display:inline-block}
+nav div a:hover,nav div a:focus-visible{color:var(--g);border-color:var(--g);background:#2a1052;outline:none}
+nav div a.on{color:#1a1033;background:var(--g);border-color:var(--g)}
+
+/* ============ 5. TITRES ============ */
+h1,h2,h3{font-family:'Cinzel',Georgia,serif;color:var(--g);font-weight:600;line-height:1.25}
+h2{font-size:1.9rem;margin-bottom:14px}
+
+/* ============ 6. BOUTONS ============ */
+.btn{display:inline-block;background:linear-gradient(135deg,#e6c75a,#b8892b);color:#1a1033;padding:14px 30px;border-radius:30px;text-decoration:none;font:bold 1rem Georgia,serif;margin:22px 14px 0 0;border:0;cursor:pointer}
+.btn:hover,.btn:focus-visible{box-shadow:0 0 22px #d4af37aa;outline:none}
+.btn.sec{background:transparent;color:var(--g);border:1px solid var(--g)}
+
+/* ============ 7. SECTIONS ET CARTES ============ */
+section{padding:54px 5%;max-width:1100px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid #d4af3744;border-radius:6px;padding:24px}
+.card h3{font-size:1.15rem;margin-bottom:8px}
+.sub{opacity:.8;font-size:.95rem}
+
+/* ============ 8. ACCUEIL : texte à gauche, photo à droite ============ */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;max-width:1100px;margin:auto;padding:70px 5%}
+.hero h1{font-size:clamp(2.1rem,5.5vw,3.5rem);text-shadow:0 0 30px #7c3aed88}
+.titulo{color:#c9b6f5;font-size:1.25rem;margin:6px 0 18px}
+.foto{position:relative;aspect-ratio:3/4;border-radius:200px 200px 8px 8px;border:2px solid var(--g);overflow:hidden;background:linear-gradient(160deg,#2a1052,#150f24);box-shadow:0 0 60px #7c3aed88}
+.foto span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.6;text-align:center;padding:20px}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.foto{order:-1;max-width:320px;margin:auto}}
+
+/* ============ 9. PRESTATIONS : liste cliquable ============ */
+.svc-btn{text-align:left;color:var(--t);font:inherit;cursor:pointer;display:block;width:100%}
+.svc-btn img{width:100%;height:120px;object-fit:cover;border-radius:4px;margin-bottom:10px;background:#2a1052}
+.svc-btn.activo{border-color:var(--g);background:#1d1233}
+.desde{color:var(--g);font-weight:bold}
+
+/* ============ 10. PRESTATIONS : fiche détaillée ============ */
+.detalle{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px;scroll-margin-top:20px}
+.detalle img.principal{width:100%;max-height:260px;object-fit:cover;border-radius:6px;background:#2a1052}
+.detalle video{width:100%;border-radius:6px;margin-top:14px;background:#000}
+.niveles{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 16px}
+.nivel{flex:1;min-width:100px;background:#0f0919;color:var(--t);border:1px solid #d4af3766;border-radius:6px;padding:10px;font:inherit;cursor:pointer}
+.nivel.on{border-color:var(--g);background:#2a1052}
+.precio-grande{color:var(--g);font-size:2rem;font-weight:bold;font-family:'Cinzel',Georgia,serif}
+@media(max-width:760px){.detalle{grid-template-columns:1fr}}
+
+/* ============ 11. FORMULAIRE DE CONTACT ============ */
+label{display:block;margin:14px 0 4px}
+input,select,textarea{width:100%;padding:12px;background:#0f0919;color:var(--t);border:1px solid #d4af3766;border-radius:6px;font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--g)}
+
+/* ============ 13. NOUVEAUX BLOCS : étapes, témoignages, FAQ, avis légal ============ */
+/* Étapes numérotées « Comment ça marche » (vraie séquence, donc numérotée) */
+.pasos{counter-reset:p;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;list-style:none;padding:0}
+.pasos li{counter-increment:p;background:var(--card);border:1px solid #d4af3744;border-radius:6px;padding:24px}
+.pasos li::before{content:counter(p);display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--g);color:#1a1033;font-weight:bold;margin-bottom:10px}
+.pasos b{color:var(--g);display:block;margin-bottom:4px}
+/* Témoignages */
+.testi{font-style:italic}
+.testi cite{display:block;margin-top:12px;color:var(--g);font-style:normal;font-size:.95rem}
+/* Questions fréquentes (déroulantes, sans JavaScript) */
+details{background:var(--card);border:1px solid #d4af3744;border-radius:6px;padding:16px 20px;margin-bottom:12px}
+summary{cursor:pointer;color:var(--g);font-weight:bold}
+details p{margin-top:10px}
+/* Encadré légal (aviso de privacidad) et réseaux sociaux */
+.aviso{background:var(--card);border-left:3px solid var(--g);padding:16px 22px;font-size:.95rem;border-radius:4px;max-width:75ch}
+.aviso p{margin-bottom:10px}
+.redes a{color:var(--g);margin-right:18px}
+footer p{margin:6px 0}
+
+/* ============ 12. BAS DE PAGE ET BOUTON WHATSAPP FLOTTANT ============ */
+footer{text-align:center;padding:30px 5%;border-top:1px solid #d4af3733;font-size:.9rem;opacity:.8}
+.wa{position:fixed;right:16px;bottom:16px;background:#25d366;color:#fff;padding:13px 20px;border-radius:30px;text-decoration:none;font:bold 1rem sans-serif;box-shadow:0 4px 16px #000a;z-index:9}
+@media(max-width:600px){nav div a{margin:6px 8px 0 0;padding:7px 14px;font-size:.95rem}}
+</style>
+</head>
+<body>
+
+<!-- ===== MENU DE NAVIGATION (identique sur les 3 pages) ===== -->
+<nav>
+  <a class="logo" href="index.html">Maestra KARINA RODRIGUEZ</a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="prestaciones.html">Servicios y precios</a>
+    <a href="contacto.html" class="on">Contacto</a>
+  </div>
+</nav>
+
+<section>
+  <h1 style="font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:12px">Contacto</h1>
+  <p style="max-width:60ch">La forma más rápida de contactarme es por WhatsApp. Cuéntame tu situación y te respondo personalmente.</p>
+  <div class="grid" style="margin-top:28px">
+
+    <!-- Carte 1 : WhatsApp direct -->
+    <p data-tel></p>
+    <a class="btn" href="#" data-wa="" target="_blank" rel="noopener">Abrir WhatsApp</a>
+
+    <!-- Carte 2 : formulaire qui prépare le message WhatsApp -->
+    <div class="card">
+      <h3>Envía tu solicitud</h3>
+      <label for="n">Tu nombre</label><input id="n">
+      <label for="s">Servicio</label>
+      <select id="s"><option>Videncia</option><option>Recuperar el amor</option><option>Protección, suerte y éxito</option><option>Limpia y desbloqueo</option></select>
+      <label for="l">Potencia</label>
+      <select id="l"><option>Simple</option><option>Potente</option><option>Suprema</option><option>No sé, aconséjame</option></select>
+      <label for="m">Tu situación</label><textarea id="m" rows="4"></textarea>
+      <!-- Case obligatoire : majeur + acceptation de l'avis de confidentialité -->
+      <label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" id="ok" style="width:auto;margin-top:7px"><span>Soy mayor de 18 años y acepto el <a href="#privacidad" style="color:#d4af37">aviso de privacidad</a>.</span></label>
+      <button class="btn" type="button" id="go">Enviar por WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INFOS PRATIQUES ET RÉSEAUX SOCIAUX ===== -->
+<section>
+  <h2>Información útil</h2>
+  <div class="grid">
+    <div class="card"><h3>Horario</h3><p>Todos los días de 8:00 a 22:00, hora del centro de México.</p></div>
+    <div class="card"><h3>Cobertura</h3><p>Todo México, a distancia por WhatsApp.</p></div>
+    <div class="card"><h3>Redes sociales</h3>
+      <!-- Remplacez TU_PAGINA par vos vrais comptes, ou supprimez la ligne -->
+      <p class="redes"><a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a><a href="https://tiktok.com/@" target="_blank" rel="noopener">TikTok</a></p></div>
+  </div>
+</section>
+
+<!-- ===== AVIS DE CONFIDENTIALITÉ (modèle) =====
+     En droit mexicain, qui collecte des données personnelles doit publier un « aviso de privacidad ».
+     Ceci est un TEXTE MODÈLE : faites-le valider par un avocat avant publication. -->
+<section id="privacidad">
+  <h2>Aviso de privacidad</h2>
+  <div class="aviso">
+    <p><b>Responsable:</b> Maestra KARINA RODRIGUEZ.</p>
+    <p><b>Datos que recabamos:</b> tu nombre, tu número de WhatsApp y la información que decidas compartir sobre tu situación.</p>
+    <p><b>Para qué los usamos:</b> únicamente para atender tu consulta y darte seguimiento.</p>
+    <p><b>Con quién los compartimos:</b> con nadie. No vendemos ni transferimos tus datos a terceros.</p>
+    <p><b>Tus derechos:</b> puedes solicitar el acceso, la rectificación, la cancelación de tus datos o oponerte a su uso (derechos ARCO) escribiéndome por WhatsApp.</p>
+    <p>Cualquier cambio a este aviso se publicará en esta página.</p>
+  </div>
+</section>
+
+<script>
+/* Quand on clique sur « Enviar », on ouvre WhatsApp avec le message déjà écrit */
+document.getElementById('go').onclick = function(){
+  // On bloque l'envoi si la case n'est pas cochée
+  if(!document.getElementById('ok').checked){ alert('Marca la casilla para continuar.'); return; }
+  var v = function(i){ return document.getElementById(i).value.trim(); };
+  var texto = 'Hola Maestra, soy ' + (v('n') || 'un visitante') + '.\nServicio: ' + v('s') + '\nPotencia: ' + v('l') + '\nMi situación: ' + v('m');
+ window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(texto), '_blank');
+};
+</script>
+
+<!-- ===== BOUTON WHATSAPP FLOTTANT (toujours visible) ===== -->
+<a class="wa" href="#" data-wa="Hola Maestra, quiero una consulta." target="_blank" rel="noopener">WhatsApp</a>
+
+<!-- ===== BAS DE PAGE ===== -->
+<footer>
+  <p>© Maestra KARINA RODRIGUEZ. Servicio disponible solo en México. Solo para mayores de 18 años.</p>
+  <!-- Avertissement important : protège le Maître et informe honnêtement les clients -->
+  <p class="sub">Los servicios espirituales y de videncia son de carácter orientativo y no garantizan resultados. No sustituyen la opinión de un médico, abogado o asesor financiero.</p>
+  <p><a href="contacto.html#privacidad" style="color:#d4af37">Aviso de privacidad</a></p>
+</footer>
+</body>
+</html>
