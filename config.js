@@ -12,7 +12,11 @@ const CONFIG = {
   whatsapp: "522871527128",
 
   // Numéro affiché à l'écran sur la page Contacto (écrivez-le comme vous voulez).
-  telefonoVisible: "+52 28 7152 7128"
+  telefonoVisible: "+52 28 7152 7128" ,
+
+    // Code secret pour autoriser UN téléphone hors des pays autorisés.
+  // Mettez une longue suite de lettres et de chiffres. Laissez "" pour désactiver.
+  codigoAcceso: "CHANGEZ-MOI-k7Q2xv9LmP4rT8"
 };
 
 /* =========================================================

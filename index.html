@@ -61,19 +61,20 @@ var ZONAS_USA = [
   "America/Indiana/","America/Kentucky/","America/North_Dakota/","Pacific/Honolulu"
 ];
 
-/* Fonction : le fuseau du visiteur est-il autorisé ? */
-function zonaPermitida(z){
-  var lista = INCLUIR_USA ? ZONAS.concat(ZONAS_USA) : ZONAS;
-  for(var i = 0; i < lista.length; i++){
-    if(z.indexOf(lista[i]) === 0){ return true; }
-  }
-  return false;
+//* Accès privé : un téléphone qui a ouvert le lien secret une fois est mémorisé */
+function accesoPrivado(){
+  try{
+    if(!CONFIG.codigoAcceso){ return false; }
+    var codigo = new URLSearchParams(location.search).get("acceso");
+    if(codigo === CONFIG.codigoAcceso){ localStorage.setItem("accesoPrivado", codigo); }
+    return localStorage.getItem("accesoPrivado") === CONFIG.codigoAcceso;
+  }catch(e){ return false; }
 }
 
 try{
   var zona = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  // Si le fuseau est inconnu (zona vide), on ne bloque pas par erreur
-  if(RESTRINGIR && zona && !zonaPermitida(zona)){
+  // On bloque seulement si : restriction active + pays non autorisé + pas de code secret
+  if(RESTRINGIR && zona && !zonaPermitida(zona) && !accesoPrivado()){
     document.documentElement.className = "bloqueado";
   }
 }catch(e){}
